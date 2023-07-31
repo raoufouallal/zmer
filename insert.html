@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Product - HTML View</title>
+</head>
+<body>
+    <h1>Upload Product - PHP Code</h1>
+    <pre>
+        &lt;?php
+        include('config.html');
+
+        if(isset($_POST['upload'])){
+            $NAME  = $_POST['name'];
+            $PRICE = $_POST['price'];
+            $IMAGE = $_FILES['image'];
+            $image_location = $_FILES['image']['tmp_name'];
+            $image_name = $_FILES['image']['name'];
+            move_uploaded_file($image_location,'images/'. $image_name);
+            $image_up = "images/".$image_name;
+            $insert = "INSERT INTO  products (name, price ,image) VALUES ('$NAME','$PRICE','$image_up')";
+            mysqli_query($con, $insert);
+            header('location: index.php');
+        }
+        ?&gt;
+    </pre>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Cairo:wght@200&family=Poppins:wght@100;200;300&family=Tajawal:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shope online | اضافة منتجات</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <style>
+        /* أسلوب CSS لوضع النصوص على اليمين */
+        input[type="text"] {
+            direction: rtl;
+            text-align: right;
+        }
+    </style>
+
+    <center>
+        <div class="main">
+            <form id="productForm" enctype="multipart/form-data">
+                <h2>موقع تسويقي اونلاين</h2>
+                <img src="logo.png" alt="logo" width="450px">
+                <input type="text" id="name" name="name" placeholder="أدخل إسم المنتج">
+                <br>
+                <input type="text" id="price" name="price" placeholder="أدخل سعر المنتج">
+                <br>
+                <input type="file" id="file" name="image" style="display:none;">
+                <label for="file" id="fileLabel">اختيار صورة للمنتج</label>
+                <button type="submit">رفع المنتج ✅</button>
+                <br><br>
+                <a href="products.html">عرض كل المنتجات</a>
+            </form>
+        </div>
+        <p>Developed By Raouf</p>
+    </center>
+
+    <script>
+        // استخدام JavaScript للتحقق من صحة البيانات قبل إرسال النموذج
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع تحميل الصفحة بشكل افتراضي عند النقر على زر الإرسال
+
+            // الحصول على قيم الحقول من النموذج
+            var name = document.getElementById('name').value.trim();
+            var price = document.getElementById('price').value.trim();
+            var file = document.getElementById('file').value.trim();
+
+            // التحقق من صحة الحقول (يمكنك إضافة المزيد من التحققات هنا حسب الحاجة)
+            if (name === '' || price === '' || file === '') {
+                alert('يرجى ملء جميع الحقول.');
+            } else {
+                // الآن بإمكانك إرسال النموذج إلى الخادم (في هذا المثال، لا يتم الإرسال بشكل فعلي)
+                alert('تم إرسال النموذج بنجاح!');
+                document.getElementById('productForm').submit();
+            }
+        });
+
+        // جعل اسم الملف يظهر عند اختيار صورة للمنتج
+        document.getElementById('file').addEventListener('change', function() {
+            var fileName = this.value.split('\\').pop();
+            document.getElementById('fileLabel').textContent = fileName;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>عرض كود PHP و JavaScript</title>
+</head>
+<body>
+    <h1>كود PHP:</h1>
+    <pre>
+&lt;?php
+$con = mysqli_connect('localhost','root','','shop_db');
+?&gt;
+    </pre>
+
+    <h1>كود JavaScript (باستخدام Node.js ومكتبة mysql2):</h1>
+    <pre>
+// تثبيت واستيراد مكتبة mysql2
+const mysql = require('mysql2');
+
+// إنشاء اتصال بقاعدة البيانات
+const con = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'shop_db'
+});
+
+// الاتصال بقاعدة البيانات
+con.connect((err) => {
+  if (err) {
+    console.error('فشل الاتصال بقاعدة البيانات:', err);
+    return;
+  }
+  console.log('تم الاتصال بنجاح!');
+
+  // يمكنك هنا كتابة الاستعلامات الخاصة بقاعدة البيانات والتعامل معها
+  // مثال:
+  // con.query('SELECT * FROM products', (err, results) => {
+  //   if (err) {
+  //     console.error('حدث خطأ أثناء التحميل:', err);
+  //     return;
+  //   }
+
+  //   console.log('البيانات من قاعدة البيانات:', results);
+  // });
+
+  // عند الانتهاء من التعامل مع قاعدة البيانات يجب إغلاق الاتصال
+  con.end((err) => {
+    if (err) {
+      console.error('حدث خطأ أثناء إغلاق الاتصال:', err);
+      return;
+    }
+    console.log('تم إغلاق الاتصال بنجاح!');
+  });
+});
+    </pre>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product - HTML View</title>
+</head>
+<body>
+    <h1>Update Product</h1>
+    <form id="updateForm" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="id" name="id" value="">
+        <label for="name">اسم المنتج:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="price">سعر المنتج:</label>
+        <input type="text" id="price" name="price" required>
+        <br>
+        <label for="image">صورة المنتج:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+        <br>
+        <button type="submit">تحديث المنتج</button>
+    </form>
+
+    <script>
+        // جلب بيانات المنتج الحالي من قاعدة البيانات وتعبئة النموذج بالبيانات
+        window.addEventListener('DOMContentLoaded', function() {
+            var productId = getProductIdFromURL(); // استخراج رقم المنتج من عنوان URL
+            fillFormWithProductData(productId); // استرجاع بيانات المنتج وتعبئة النموذج بها
+        });
+
+        // دالة لاستخراج رقم المنتج من عنوان URL
+        function getProductIdFromURL() {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        // دالة لاسترجاع بيانات المنتج وتعبئة النموذج بها
+        function fillFormWithProductData(productId) {
+            // قم بإضافة كود PHP هنا لاسترجاع بيانات المنتج من قاعدة البيانات وملئ النموذج بها
+            // يمكنك استخدام XMLHttpRequest أو fetch API لجلب البيانات من الخادم
+            // ثم قم بتحديث قيم حقول النموذج باستخدام JavaScript
+            // مثال:
+            // document.getElementById('name').value = productData.name;
+            // document.getElementById('price').value = productData.price;
+            // وما إلى ذلك
+        }
+
+        // استخدام JavaScript للتحقق من صحة البيانات قبل إرسال النموذج
+        document.getElementById('updateForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // منع تحميل الصفحة بشكل افتراضي عند النقر على زر الإرسال
+
+            // الحصول على قيم الحقول من النموذج
+            var id = document.getElementById('id').value;
+            var name = document.getElementById('name').value.trim();
+            var price = document.getElementById('price').value.trim();
+            var file = document.getElementById('image').value.trim();
+
+            // التحقق من صحة الحقول (يمكنك إضافة المزيد من التحققات هنا حسب الحاجة)
+            if (name === '' || price === '' || file === '') {
+                alert('يرجى ملء جميع الحقول.');
+            } else {
+                // الآن بإمكانك إرسال النموذج إلى الخادم (في هذا المثال، لا يتم الإرسال بشكل فعلي)
+                alert('تم تحديث المنتج بنجاح!');
+                document.getElementById('updateForm').submit();
+            }
+        });
+    </script>
+</body>
+</html>
